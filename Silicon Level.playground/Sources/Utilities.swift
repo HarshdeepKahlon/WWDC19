@@ -30,7 +30,7 @@ public func scaleUIImageToSize(image: UIImage, size: CGSize) -> UIImage {
 }
 
 public func addBackgroundWithBlur(view: UIView) {
-    let background = UIImage(named: "SkylakeDie.jpg")
+    let background = UIImage(named: "7980Die.jpg")
     let backgroundImageView = UIImageView(frame: view.bounds)
     backgroundImageView.clipsToBounds = true
     backgroundImageView.image = background

@@ -41,7 +41,7 @@ public class ChipMapViewController: UIViewController, UIScrollViewDelegate {
         smallCPUButton.setTitle("Small CPU Cores", for: .normal)
         
         bigCPUButton = UIButton(frame: CGRect(x: 300, y: 630, width: 150, height: 150))
-        bigCPUButton.backgroundColor = UIColor(red:0.56, green:0.77, blue:0.50, alpha:1.0)
+        bigCPUButton.backgroundColor = UIColor(red:0.00, green:0.90, blue:0.64, alpha:1.0)
         bigCPUButton.setTitle("Big CPU Cores", for: .normal)
         
         NPUButton = UIButton(frame: CGRect(x: 60, y: 600, width: 140, height: 140))
