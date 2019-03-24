@@ -31,17 +31,17 @@ public class ChipMapViewController: UIViewController, UIScrollViewDelegate {
         scrollView.contentOffset = CGPoint(x: 100, y: 100)
         self.view = scrollView
         
-        
+
         GPUButton = UIButton(frame: CGRect(x: 760, y: 430, width: 160, height: 160))
         GPUButton.backgroundColor = UIColor(red:1.00, green:0.36, blue:0.36, alpha:1.0)
         GPUButton.setTitle("GPU Cores", for: .normal)
         
         smallCPUButton = UIButton(frame: CGRect(x: 550, y: 700, width: 150, height: 150))
-        smallCPUButton.backgroundColor = UIColor(red:0.16, green:0.87, blue:0.50, alpha:1.0)
+        smallCPUButton.backgroundColor = UIColor(red:0.36, green:0.57, blue:0.30, alpha:1.0)
         smallCPUButton.setTitle("Small CPU Cores", for: .normal)
         
         bigCPUButton = UIButton(frame: CGRect(x: 300, y: 630, width: 150, height: 150))
-        bigCPUButton.backgroundColor = UIColor(red:0.15, green:0.65, blue:0.34, alpha:1.0)
+        bigCPUButton.backgroundColor = UIColor(red:0.56, green:0.77, blue:0.50, alpha:1.0)
         bigCPUButton.setTitle("Big CPU Cores", for: .normal)
         
         NPUButton = UIButton(frame: CGRect(x: 60, y: 600, width: 140, height: 140))
@@ -54,7 +54,7 @@ public class ChipMapViewController: UIViewController, UIScrollViewDelegate {
 
         DDRButton = UIButton(frame: CGRect(x: 100, y: 25, width: 140, height: 50))
         DDRButton.backgroundColor = .gray
-        DDRButton.setTitle("DDR Controller", for: .normal)
+        DDRButton.setTitle("RAM Logic", for: .normal)
 
         processButton = UIButton(frame: CGRect(x: 100, y: 250, width: 140, height: 140))
         processButton.backgroundColor = UIColor(red:1.00, green:0.52, blue:0.07, alpha:1.0)
@@ -64,16 +64,14 @@ public class ChipMapViewController: UIViewController, UIScrollViewDelegate {
 
         for button in buttons {
             button.titleLabel?.font = UIFont(name: "Helvetica Bold", size: 17)
-            button.layer.cornerRadius = 15
-            //button.layer.borderWidth = 0.5
-            //button.addBlurEffect()
-            button.layer.borderColor = UIColor.clear.cgColor
+            button.layer.cornerRadius = 10
             button.layer.shadowColor = UIColor.black.cgColor
             button.layer.shadowOffset = CGSize(width: 10, height: 10)
             button.layer.shadowOpacity = 0.5
             button.layer.shadowRadius = 1.5
             button.layer.masksToBounds = false
-
+            
+            
             button.addTarget(self, action: #selector(componentButtonSelected(sender:)), for: .touchUpInside)
             view.addSubview(button)
         }
@@ -83,12 +81,13 @@ public class ChipMapViewController: UIViewController, UIScrollViewDelegate {
             self.scrollView.contentOffset = CGPoint(x: 300, y: 300)
         }
         
-        self.navigationItem.title = "Drag to Navigate"
+        self.navigationItem.title = "Chip Floorplan"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Finish", style: .plain, target: self, action: #selector(finishAction(sender:)))
     }
     
     
+    
     @objc func componentButtonSelected(sender: UIButton!) {
-        let viewController = ChipDetailViewController()
         switch sender {
         case bigCPUButton:
             selectedChip = .bigCPU
@@ -101,18 +100,40 @@ public class ChipMapViewController: UIViewController, UIScrollViewDelegate {
         case DDRButton:
             selectedChip = .DDR
         case processButton:
-            selectedChip = .Node
+            selectedChip = .node
+        case L3Button:
+            selectedChip = .cache
         default:
             break
         }
-        sender.alpha = 0.8
+        if sender.titleLabel!.numberOfLines < 2 {
+            var buttonText = NSMutableAttributedString(string: "\(sender.titleLabel!.text!)\n")
+            buttonText.append(NSMutableAttributedString(string: "Viewed", attributes: [NSAttributedString.Key.font: UIFont(name: "Helvetica", size: 10)]))
+            sender.titleLabel?.numberOfLines = 2
+            sender.titleLabel?.textAlignment = .center
+            sender.setAttributedTitle(buttonText, for: .normal)
+        }
+        let viewController = ChipDetailViewController()
         navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    @objc func finishAction(sender: UIButton!) {
+        let alert = UIAlertController(title: "Are you finished viewing the A12?", message: "It's recommended that you view each component.", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "I'm Done", style: .default, handler: { (_) in
+            let viewController = FinalViewController()
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }))
+        alert.addAction(UIAlertAction(title: "Not Yet", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true)
+
     }
     
     
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let yOffset = self.scrollView.contentOffset.y * 0.1
-        let xOffset = self.scrollView.contentOffset.x * 0.1
+        let yOffset = self.scrollView.contentOffset.y * 0.15
+        let xOffset = self.scrollView.contentOffset.x * 0.15
         imageView.center.y = yOffset + 450
         imageView.center.x = xOffset + 450
     }
