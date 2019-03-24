@@ -8,6 +8,8 @@ public class DirectionsViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         addBackgroundWithBlur(view: view)
+        
+        // Next Button
         button = UIButton(frame: CGRect(x: 0, y: 0, width: 150, height: 50))
         button.titleLabel?.font = UIFont(name: "Helvetica Bold", size: 20)
         button.layer.cornerRadius = 10
@@ -16,8 +18,10 @@ public class DirectionsViewController: UIViewController {
         button.backgroundColor = UIColor(red:0.00, green:0.00, blue:0.00, alpha:0.5)
         button.addTarget(self, action: #selector(buttonAction(sender:)), for: .touchUpInside)
         view.addSubview(button)
+        
+        // Title Label
         titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 600, height: 170))
-        var siliconText = NSMutableAttributedString(string: "By Harshdeep in Scranton\n", attributes: [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size: 20)])
+        let siliconText = NSMutableAttributedString(string: "By Harshdeep in Scranton\n", attributes: [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size: 20)])
         siliconText.append(NSMutableAttributedString(string: "Get Started", attributes: [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 60)]))
         titleLabel.attributedText = siliconText
         titleLabel.numberOfLines = 2
@@ -27,6 +31,8 @@ public class DirectionsViewController: UIViewController {
         titleLabel.layer.cornerRadius = 5
         titleLabel.clipsToBounds = true
         view.addSubview(titleLabel)
+        
+        // Description Label
         descriptionLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 600, height: 500))
         descriptionLabel.text = """
         • Explore Apple's A12 chip, which is used

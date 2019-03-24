@@ -11,7 +11,6 @@ public class ChipDetailViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Apple A12"
-        navigationItem.backBarButtonItem?.title = "Chip Map"
         addBackgroundWithBlur(view: view)
         var mainString = ""
         var secondString = ""
@@ -19,6 +18,8 @@ public class ChipDetailViewController: UIViewController {
         var secondBullet = ""
         var thirdBullet = ""
         var chipImage = UIImage(named: "A12EmptyDie.jpg")
+        
+        // Sets up the view's labels and image
         switch selectedChip {
         case .bigCPU:
             mainString = "2 Vortex Cores"
@@ -69,8 +70,6 @@ public class ChipDetailViewController: UIViewController {
             firstBullet = "World's first 7 nanometer chip"
             secondBullet = "60% denser compared to 10nm"
             thirdBullet = "20% faster + 40% lower power"
-        default:
-            break
         }
         
         let siliconText = NSMutableAttributedString(string: "\(secondString)\n", attributes: [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size: 20)])

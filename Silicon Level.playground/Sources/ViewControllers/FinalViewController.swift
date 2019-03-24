@@ -9,8 +9,7 @@ public class FinalViewController: UIViewController {
         super.viewDidLoad()
         addBackgroundWithBlur(view: view)
         
-        
-        
+        // Title Label
         titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 600, height: 160))
         let siliconText = (NSMutableAttributedString(string: "Thanks\n", attributes: [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 60)]))
         siliconText.append(NSMutableAttributedString(string: "I hope you enjoyed the playground!", attributes: [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size: 20)]))
@@ -23,11 +22,11 @@ public class FinalViewController: UIViewController {
         titleLabel.clipsToBounds = true
         view.addSubview(titleLabel)
         
+        // Thoughts Label
         thoughtsLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 500, height: 600))
         thoughtsLabel.font = UIFont(name: "Helvetica Bold", size: 20)
         thoughtsLabel.textColor = .white
         thoughtsLabel.numberOfLines = 20
-        
         let attributedString = NSMutableAttributedString(string: """
         This playground was created by someone
         who is passionate about processors and
@@ -51,9 +50,7 @@ public class FinalViewController: UIViewController {
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
         thoughtsLabel.attributedText = attributedString
         thoughtsLabel.textAlignment = .center
-        
         view.addSubview(thoughtsLabel)
-        
     }
     
     

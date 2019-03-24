@@ -13,8 +13,8 @@ public class IntroViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         addBackgroundWithBlur(view: view)
-
-
+        
+        // Get Started Button
         button = UIButton(frame: CGRect(x: 0, y: 0, width: 150, height: 50))
         button.titleLabel?.font = UIFont(name: "Helvetica Bold", size: 20)
         button.layer.cornerRadius = 10
@@ -24,6 +24,7 @@ public class IntroViewController: UIViewController {
         button.addTarget(self, action: #selector(nextButtonPressed(sender:)), for: .touchUpInside)
         view.addSubview(button)
         
+        // Title Label
         titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 600, height: 220))
         let siliconText = NSMutableAttributedString(string: "Silicon\n", attributes: [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size: 60)])
         siliconText.append(NSMutableAttributedString(string: "Level\n", attributes: [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 60)]))
@@ -37,17 +38,18 @@ public class IntroViewController: UIViewController {
         titleLabel.clipsToBounds = true
         view.addSubview(titleLabel)
         
+        // Help Label
         helpLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 400, height: 100))
         helpLabel.text = "Tap to view the history of Apple's A-Series!"
         helpLabel.textColor = .white
         helpLabel.textAlignment = .center
         view.addSubview(helpLabel)
         
+        // A-Series Chip Images
         chipArray = []
         for i in 4...12 {
             chipArray.append(UIImage(named: "A-Series Chips/A\(i)Chip.jpg")!)
         }
-        
         chipView = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
         chipView.setImage(UIImage(named: "A-Series Chips/A12Chip.jpg"), for: .normal)
         chipView.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
@@ -78,6 +80,7 @@ public class IntroViewController: UIViewController {
         navigationController?.pushViewController(viewController, animated: true)
     }
     
+    // Moves to the next A-Series Chip with an animation
     @objc func buttonPressed(sender: UIButton) {
         UIView.transition(with: sender, duration: 1.0, options: .transitionFlipFromBottom, animations: {
             sender.setImage(self.chipArray[self.currentChip], for: .normal)

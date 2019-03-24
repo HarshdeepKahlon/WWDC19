@@ -29,6 +29,7 @@ public func scaleUIImageToSize(image: UIImage, size: CGSize) -> UIImage {
     return scaledImage!
 }
 
+// Adds a blurred background to any view.
 public func addBackgroundWithBlur(view: UIView) {
     let background = UIImage(named: "7980Die.jpg")
     let backgroundImageView = UIImageView(frame: view.bounds)
