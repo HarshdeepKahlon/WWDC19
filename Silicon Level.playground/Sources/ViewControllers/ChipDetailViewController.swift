@@ -72,7 +72,7 @@ public class ChipDetailViewController: UIViewController {
             thirdBullet = "20% faster + 40% lower power"
         }
         
-        let siliconText = NSMutableAttributedString(string: "\(secondString)\n", attributes: [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size: 20)])
+        let siliconText = NSMutableAttributedString(string: "\(secondString)\n", attributes: [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size: 20)!])
         siliconText.append(NSMutableAttributedString(string: mainString, attributes: [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 60)]))
         titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 600, height: 170))
         titleLabel.attributedText = siliconText

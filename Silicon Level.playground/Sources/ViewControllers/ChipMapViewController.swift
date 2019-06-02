@@ -91,7 +91,7 @@ public class ChipMapViewController: UIViewController, UIScrollViewDelegate {
     
     
     
-    @objc func componentButtonSelected(sender: UIButton!) {
+    @IBAction func componentButtonSelected(sender: UIButton!) {
         switch sender {
         case bigCPUButton:
             selectedChip = .bigCPU
@@ -113,7 +113,7 @@ public class ChipMapViewController: UIViewController, UIScrollViewDelegate {
         // Tells the user if the given button was already viewed
         if sender.titleLabel!.numberOfLines < 2 {
             let buttonText = NSMutableAttributedString(string: "\(sender.titleLabel!.text!)\n")
-            buttonText.append(NSMutableAttributedString(string: "Viewed", attributes: [NSAttributedString.Key.font: UIFont(name: "Helvetica", size: 10)]))
+            buttonText.append(NSMutableAttributedString(string: "Viewed", attributes: [NSAttributedString.Key.font: UIFont(name: "Helvetica", size: 10)!]))
             sender.titleLabel?.numberOfLines = 2
             sender.titleLabel?.textAlignment = .center
             sender.setAttributedTitle(buttonText, for: .normal)
@@ -122,7 +122,7 @@ public class ChipMapViewController: UIViewController, UIScrollViewDelegate {
         navigationController?.pushViewController(viewController, animated: true)
     }
     
-    @objc func finishAction(sender: UIButton!) {
+    @IBAction func finishAction(sender: UIButton!) {
         let alert = UIAlertController(title: "Are you finished viewing the A12?", message: "It's recommended that you view each component.", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "I'm Done", style: .default, handler: { (_) in

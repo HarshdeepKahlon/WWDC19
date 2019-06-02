@@ -74,14 +74,14 @@ public class IntroViewController: UIViewController {
         titleLabel.center.x = view.center.x
     }
 
-    @objc func nextButtonPressed(sender: UIButton!) {
+    @IBAction func nextButtonPressed(sender: UIButton!) {
         let viewController = DirectionsViewController()
         navigationController?.isNavigationBarHidden = false
         navigationController?.pushViewController(viewController, animated: true)
     }
     
     // Moves to the next A-Series Chip with an animation
-    @objc func buttonPressed(sender: UIButton) {
+    @IBAction func buttonPressed(sender: UIButton) {
         UIView.transition(with: sender, duration: 1.0, options: .transitionFlipFromBottom, animations: {
             sender.setImage(self.chipArray[self.currentChip], for: .normal)
             self.helpLabel.alpha = 0

@@ -14,7 +14,6 @@ import PlaygroundSupport
 
 let navigationController = UINavigationController(rootViewController: IntroViewController())
 
-navigationController.view.frame.size = CGSize(width: 500, height: 700)
 navigationController.view.clipsToBounds = true
 navigationController.navigationBar.barStyle = .blackTranslucent
 navigationController.navigationBar.tintColor = .white

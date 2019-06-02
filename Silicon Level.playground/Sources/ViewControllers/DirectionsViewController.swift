@@ -21,8 +21,8 @@ public class DirectionsViewController: UIViewController {
         
         // Title Label
         titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 600, height: 170))
-        let siliconText = NSMutableAttributedString(string: "By Harshdeep in Scranton\n", attributes: [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size: 20)])
-        siliconText.append(NSMutableAttributedString(string: "Get Started", attributes: [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 60)]))
+        let siliconText = NSMutableAttributedString(string: "By Harshdeep in Scranton\n", attributes: [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size: 20)!])
+        siliconText.append(NSMutableAttributedString(string: "Get Started", attributes: [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 60) as Any as Any]))
         titleLabel.attributedText = siliconText
         titleLabel.numberOfLines = 2
         titleLabel.textColor = UIColor(red:1.00, green:0.27, blue:0.27, alpha:1.0)
@@ -66,7 +66,7 @@ public class DirectionsViewController: UIViewController {
         descriptionLabel.center.x += 11
     }
     
-    @objc func buttonAction(sender: UIButton!) {
+    @IBAction func buttonAction(sender: UIButton!) {
         let viewController = ChipMapViewController()
         navigationController?.pushViewController(viewController, animated: true)
     }
